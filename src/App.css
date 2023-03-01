@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.dark-blue {
+  color: #093549;
+}
+
+.light-blue {
+  color: #1c9fda;
+}
+
+.light-gray {
+  color: #475467;
+}
