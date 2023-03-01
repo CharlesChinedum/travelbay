@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useRef } from "react";
+import PinInput from "react-pin-input";
 
 import { Link } from "react-router-dom";
 
@@ -6,6 +7,17 @@ import { Mockup } from "../components";
 import returnIcon from "../assets/images/return.png";
 
 const ConfirmOTP = () => {
+  const [value, setValue] = useState("");
+  const pinRef = useRef(null);
+
+  const onChange = (value) => {
+    setValue(value);
+  };
+
+  const onClear = () => {
+    setValue("");
+    pinRef.current.clear();
+  };
   return (
     <div>
       <div className="w-full flex flex-col md:flex-row">
@@ -32,7 +44,34 @@ const ConfirmOTP = () => {
                 </p>
               </div>
 
-              <div>Input</div>
+              <div className="flex w-full md:justify-center">
+                <PinInput
+                  length={6}
+                  focus
+                  // disabled
+                  // secret
+                  ref={pinRef}
+                  type="numeric"
+                  onChange={onChange}
+                  onComplete={(value, index) => {
+                    console.log(value);
+                  }}
+                  style={{
+                    padding: "10px",
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                  }}
+                  inputStyle={{
+                    borderColor: "gray",
+                    borderRadius: "7px",
+                    margin: "0 0.3rem",
+                    width: "2.5rem",
+                    height: "2.5rem",
+                  }}
+                  inputFocusStyle={{ borderColor: "#1c9fda" }}
+                />
+              </div>
 
               <div className="flex flex-col gap-7">
                 <div className="text-center">
