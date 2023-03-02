@@ -29,7 +29,9 @@ const ConfirmOTP = () => {
           <div className="w-full px-[1rem] md:px-[7rem] pt-7">
             <div className="w-full text-right">
               <Link to="/signup">
-                <span>Create an account</span>
+                <span className="text-[#093549] text-sm md:text-md font-bold">
+                  Create an account
+                </span>
               </Link>
             </div>
 

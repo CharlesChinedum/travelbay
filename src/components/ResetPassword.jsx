@@ -58,9 +58,11 @@ const ResetPassword = () => {
               </div>
 
               <div className="w-full">
-                <button className="bg-[#1c9fda] w-full p-2 rounded-md text-white text-sm md:text-md cursor-pointer">
-                  Continue
-                </button>
+                <Link to="/confirmotp">
+                  <button className="bg-[#1c9fda] w-full p-2 rounded-md text-white text-sm md:text-md cursor-pointer">
+                    Continue
+                  </button>
+                </Link>
               </div>
 
               <div className="text-center">
