@@ -6,12 +6,11 @@ import {
   InMemoryCache,
   ApolloProvider,
   HttpLink,
+  createHttpLink,
   from,
   gql,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
-import GetUsers from "./components/GetUsers";
-import Form from "./components/Form";
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
@@ -36,16 +35,19 @@ const errorLink = onError(({ graphqlErrors, networkError }) => {
 //   new HttpLink({ uri: "https://travelbay-9vyj.onrender.com/graphql" }),
 // ]);
 
+const link = createHttpLink({
+  uri: "https://travelbay-9vyj.onrender.com/graphql",
+  credentials: "same-origin",
+});
+
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  // link: link,
-  uri: "https://travelbay-9vyj.onrender.com/graphql",
+  link,
 });
 
 function App() {
   return (
     <ApolloProvider client={client}>
-      {/* <Form /> */}
       <Router>
         <Routes>
           <Route path="/" element={<CreateAccount />} />
