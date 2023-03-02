@@ -40,10 +40,10 @@ const Mockup = () => {
             </div>
             {initialText ? (
               <div className="w-full text-center">
-                <h2 className="text-[17px] md:text-[24px] font-medium dark-blue">
+                <h2 className="text-[18px] md:text-[24px] font-medium dark-blue">
                   Access packages & create custom trips
                 </h2>
-                <p className="md:leading-[20px] light-gray text-xs md:text-[16px]">
+                <p className="md:leading-[20px] light-gray text-sm md:text-[16px]">
                   Packages Travel packages made for you Create custom trip
                   Access packages & create custom trips Explore ready made
                   packages from the best deals in the market for you. Tailor
@@ -52,10 +52,10 @@ const Mockup = () => {
               </div>
             ) : (
               <div className="w-full text-center">
-                <h2 className="text-[17px] md:text-[24px] font-medium dark-blue">
+                <h2 className="text-[18px] md:text-[24px] font-medium dark-blue">
                   Customize a payment plan for your dream trip
                 </h2>
-                <p className="md:leading-[20px] light-gray text-xs md:text-[16px]">
+                <p className="md:leading-[20px] light-gray text-sm md:text-[16px]">
                   Choose a payment frequency that works for you to make your
                   dream trip happen. You can pay in installments before the
                   departure date is close.
@@ -67,13 +67,13 @@ const Mockup = () => {
                 onClick={handleFirstSlide}
                 className={`border-b-4 rounded-md cursor-pointer ${
                   color ? "border-[#1C9FDA]" : "border-gray-400"
-                } w-10`}
+                } w-14`}
               />
               <div
                 onClick={handleSecondSlide}
                 className={`border-b-4 rounded-md cursor-pointer ${
                   secondColor ? "border-[#1C9FDA]" : "border-gray-400"
-                } w-10`}
+                } w-14`}
               />
             </div>
 
