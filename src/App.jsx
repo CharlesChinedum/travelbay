@@ -19,7 +19,6 @@ import {
   ResetPassword,
   Login,
   CreateAccount,
-  Auth,
   CreateNewPassword,
   ConfirmOTP,
 } from "./components";
