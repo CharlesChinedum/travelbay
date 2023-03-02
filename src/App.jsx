@@ -49,7 +49,6 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<CreateAccount />} />
-          <Route path="/auth" element={<Auth />} />
           <Route path="/signup" element={<CreateAccount />} />
           <Route path="/login" element={<Login />} />
           <Route path="/resetpassword" element={<ResetPassword />} />
