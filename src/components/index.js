@@ -1,7 +1,6 @@
 export { default as CreateAccount } from "./CreateAccount";
 export { default as Login } from "./Login";
 export { default as ResetPassword } from "./ResetPassword";
-export { default as Auth } from "./Auth";
 export { default as SignUpForm } from "./SignUpForm";
 export { default as LoginForm } from "./LoginForm";
 export { default as CreateNewPassword } from "./CreateNewPassword";
