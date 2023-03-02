@@ -8,22 +8,8 @@ import mobileMockup from "../assets/images/mobile-mockup.png";
 import { Mockup } from "../components";
 
 const ResetPassword = () => {
-  const [initialText, setInitialText] = useState(true);
-  const [color, setColor] = useState(true);
-  const [secondColor, setSecondColor] = useState(false);
   const [email, setEmail] = useState("");
 
-  function handleFirstSlide() {
-    setInitialText(true);
-    setColor(true);
-    setSecondColor(false);
-  }
-
-  function handleSecondSlide() {
-    setInitialText(false);
-    setColor(false);
-    setSecondColor(true);
-  }
   return (
     <div>
       <div className="flex flex-col md:flex-row w-full">
@@ -35,23 +21,28 @@ const ResetPassword = () => {
           <div className="w-full px-[1rem] md:px-[7rem] pt-7">
             <div className="w-full text-right">
               <Link to="/signup">
-                <span className="text-xs md:text-md">Create an account</span>
+                <span className="text-[#093549] text-sm md:text-md font-bold">
+                  Create an account
+                </span>
               </Link>
             </div>
 
             <div className="w-full  flex flex-col gap-5 md:gap-8">
               <div>
-                <h2 className="text-lg md:text-[24px] font-medium dark-blue">
+                <h2 className="text-[25px] md:text-[32px] font-sans font-medium dark-blue">
                   Reset your password
                 </h2>
-                <p className="text-xs md:text-md">
+                <p className="text-sm md:text-[16px] text-[#093549]">
                   Please enter the email address associated with your account.
                   We will send you an email with instructions on how to recover
                   your password.
                 </p>
               </div>
               <div>
-                <label htmlFor="email" className="text-xs">
+                <label
+                  htmlFor="email"
+                  className="text-[14px] text-[#093549] font-medium"
+                >
                   Email Address
                 </label>{" "}
                 <br />
@@ -62,7 +53,7 @@ const ResetPassword = () => {
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
-                  className="border-[2px] px-2 py-1 rounded-md w-full"
+                  className="border-[1px] px-2 py-1 rounded-md w-full placeholder:text-[13px] md:placeholder:text-[16px]"
                 />
               </div>
 

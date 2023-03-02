@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
+//GraphQL
+import { useMutation, gql } from "@apollo/client";
+import { CREATE_USER_MUTATION } from "../GraphQL/Mutations";
+
 import googleIcon from "../assets/images/googleIcon.png";
 
 const SignUpForm = () => {
@@ -9,26 +14,55 @@ const SignUpForm = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
 
+  const [register, { loading, error, data }] =
+    useMutation(CREATE_USER_MUTATION);
+
+  const addUser = async () => {
+    await register({
+      variables: {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+        phoneNumber: phoneNumber,
+      },
+    });
+
+    if (data) {
+      // const token = data.register.token;
+      console.log(data.register.token);
+    }
+
+    if (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <div className="w-full px-[1rem] md:px-[7rem] pt-7">
         <div className="w-full text-right">
           <Link to="/login">
-            <span>Sign In</span>
+            <span className="text-[#093549] text-sm md:text-md font-bold">
+              Sign In
+            </span>
           </Link>
         </div>
         <div className="w-full">
-          <h2 className="text-xl md:text-[24px] font-medium dark-blue">
+          <h2 className="text-[32px] font-medium dark-blue">
             Let's get started
           </h2>
-          <p className="text-xs md:text-md">
+          <p className="text-sm md:text-[16px] text-[#093549]">
             Create an account and enjoy a seemless travel booking experience.
           </p>
 
           <div className="flex flex-col gap-4">
             <div className="flex gap-2 md:gap-5 w-full mt-3">
               <div className=" w-[50%]">
-                <label htmlFor="firstName" className="text-xs">
+                <label
+                  htmlFor="firstName"
+                  className="text-[14px] text-[#093549] font-medium"
+                >
                   First Name
                 </label>{" "}
                 <br />
@@ -39,12 +73,15 @@ const SignUpForm = () => {
                   onChange={(e) => {
                     setFirstName(e.target.value);
                   }}
-                  className="border-[2px] outline-none px-2 py-1 rounded-md w-full placeholder:text-[10px] md:placeholder:text-[16px]"
+                  className="border-[2px] outline-none px-2 py-1 rounded-md w-full placeholder:text-[12px] md:placeholder:text-[16px]"
                 />
               </div>
 
               <div className=" w-[50%]">
-                <label htmlFor="lastName" className="text-xs">
+                <label
+                  htmlFor="lastName"
+                  className="text-[14px] text-[#093549] font-medium"
+                >
                   Last Name
                 </label>{" "}
                 <br />
@@ -55,12 +92,15 @@ const SignUpForm = () => {
                   onChange={(e) => {
                     setLastName(e.target.value);
                   }}
-                  className="border-[2px] outline-none px-2 py-1 rounded-md w-full placeholder:text-[10px] md:placeholder:text-[16px]"
+                  className="border-[2px] outline-none px-2 py-1 rounded-md w-full placeholder:text-[12px] md:placeholder:text-[16px]"
                 />
               </div>
             </div>
             <div>
-              <label htmlFor="email" className="text-xs">
+              <label
+                htmlFor="email"
+                className="text-[14px] text-[#093549] font-medium"
+              >
                 Email Address
               </label>{" "}
               <br />
@@ -71,12 +111,15 @@ const SignUpForm = () => {
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
-                className="border-[2px] px-2 py-1 outline-none rounded-md w-full  placeholder:text-[10px] md:placeholder:text-[16px]"
+                className="border-[2px] px-2 py-1 outline-none rounded-md w-full placeholder:text-[12px] md:placeholder:text-[16px]"
               />
             </div>
 
             <div>
-              <label htmlFor="phoneNumber" className="text-xs">
+              <label
+                htmlFor="phoneNumber"
+                className="text-[14px] text-[#093549] font-medium"
+              >
                 Phone Number
               </label>{" "}
               <br />
@@ -101,7 +144,10 @@ const SignUpForm = () => {
               </div>
             </div>
             <div>
-              <label htmlFor="password" className="text-xs">
+              <label
+                htmlFor="password"
+                className="text-[14px] text-[#093549] font-medium"
+              >
                 Password
               </label>{" "}
               <br />
@@ -113,7 +159,7 @@ const SignUpForm = () => {
                   onChange={(e) => {
                     setPassword(e.target.value);
                   }}
-                  className="w-full outline-none  placeholder:text-[10px] md:placeholder:text-[16px]"
+                  className="w-full outline-none  placeholder:text-[12px] md:placeholder:text-[16px]"
                 />
                 <p className="text-[#1c9fda] font-medium text-[10px] md:text-sm">
                   Show
@@ -143,7 +189,10 @@ const SignUpForm = () => {
             </div>
 
             <div className="w-full">
-              <button className="bg-[#1c9fda] w-full p-2 rounded-md text-white text-sm md:text-md cursor-pointer">
+              <button
+                className="bg-[#1c9fda] w-full p-2 rounded-md text-white text-sm md:text-md cursor-pointer"
+                onClick={addUser}
+              >
                 Create an account
               </button>
             </div>

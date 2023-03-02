@@ -1,39 +1,19 @@
 import { gql } from "@apollo/client";
 
-// export const CREATE_USER_MUTATION = gql`
-//   mutation register(
-//     $firstName: String!
-//     $lastName: String!
-//     $email: Email!
-//     $password: String!
-//     $phoneNumber: String!
-//   ) {
-//     register(
-//       firstName: $firstName
-//       lastName: $lastName
-//       email: $email
-//       password: $password
-//       phoneNumber: $phoneNumber
-//     ) {
-//        __typename
-//     ... on UserRegisterResultSuccess {
-//       token
-//     }
-//     ... on BadRequest {
-//       message
-//     }
-//   }
-//   }
-// `;
-
 export const CREATE_USER_MUTATION = gql`
-  mutation {
+  mutation register(
+    $firstName: String!
+    $lastName: String!
+    $email: Email!
+    $password: String!
+    $phoneNumber: String!
+  ) {
     register(
-      firstName: "Charles"
-      lastName: "Ugbor"
-      email: "char@mail.com"
-      password: "1234"
-      phoneNumber: "12345667"
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      password: $password
+      phoneNumber: $phoneNumber
     ) {
       __typename
       ... on UserRegisterResultSuccess {
@@ -46,10 +26,30 @@ export const CREATE_USER_MUTATION = gql`
   }
 `;
 
-// {
-//   "firstName": "Leo",
-//   "lastName": "Charles",
-//   "email": "charles@gmail.com",
-//   "password": "1234",
-//   "phoneNumber": "09060423952"
-// }
+export const LOGIN_MUTATION = gql`
+  mutation login($email: Email!, $password: String!) {
+    login(email: $email, password: $password) {
+      __typename
+      ... on UserLoginResultSuccess {
+        token
+      }
+      ... on BadRequest {
+        message
+      }
+    }
+  }
+`;
+
+export const RESET_PASSWORD_MUTATION = gql`
+  mutation resetPassword($email: Email!) {
+    resetPassword(email: $email) {
+      __typename
+      ... on UserResetPasswordResultSuccess {
+        message
+      }
+      ... on BadRequest {
+        message
+      }
+    }
+  }
+`;

@@ -32,14 +32,15 @@ const errorLink = onError(({ graphqlErrors, networkError }) => {
   }
 });
 
-const link = from([
-  errorLink,
-  new HttpLink({ uri: "https://travelbay-9vyj.onrender.com/graphql" }),
-]);
+// const link = from([
+//   errorLink,
+//   new HttpLink({ uri: "https://travelbay-9vyj.onrender.com/graphql" }),
+// ]);
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: link,
+  // link: link,
+  uri: "https://travelbay-9vyj.onrender.com/graphql",
 });
 
 function App() {

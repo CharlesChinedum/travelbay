@@ -1,29 +1,58 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import googleIcon from "../assets/images/googleIcon.png";
+import { useMutation, gql } from "@apollo/client";
+import { LOGIN_MUTATION } from "../GraphQL/Mutations";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [login, { loading, error, data }] = useMutation(LOGIN_MUTATION);
+
+  const loginUser = async () => {
+    await login({
+      variables: {
+        email: email,
+        password: password,
+      },
+    });
+
+    if (data) {
+      // const token = data.login.token;
+      console.log(data.login.token);
+    }
+
+    if (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
       <div className="w-full px-[1rem] md:px-[7rem] pt-7">
         <div className="w-full text-right">
           <Link to="/signup">
-            <span className="text-xs md:text-md">Create an account</span>
+            <span className="text-[#093549] text-sm md:text-md font-bold">
+              Create an account
+            </span>
           </Link>
         </div>
         <div className="w-full">
-          <h2 className="text-lg md:text-[24px] font-medium dark-blue">
+          <h2 className="text-[32px] font-sans font-medium dark-blue">
             Welcome back
           </h2>
-          <p className="text-xs md:text-md">Login your travelbay account</p>
+          <p className="text-sm md:text-[16px] text-[#093549]">
+            Login your travelbay account
+          </p>
 
           <div className="flex flex-col gap-5 md:gap-7">
             <div className="flex gap-5 w-full mt-3" />
             <div>
-              <label htmlFor="email" className="text-xs">
+              <label
+                htmlFor="email"
+                className="text-[14px] text-[#093549] font-medium"
+              >
                 Email Address
               </label>{" "}
               <br />
@@ -34,12 +63,15 @@ const LoginForm = () => {
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
-                className="border-[2px] px-2 py-1 rounded-md w-full outline-none  placeholder:text-[12px] md:placeholder:text-[16px]"
+                className="border-[2px] px-2 py-1 rounded-md w-full outline-none  placeholder:text-[13px] md:placeholder:text-[16px]"
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="text-xs">
+              <label
+                htmlFor="password"
+                className="text-[14px] text-[#093549] font-medium"
+              >
                 Password
               </label>{" "}
               <br />
@@ -51,7 +83,7 @@ const LoginForm = () => {
                   onChange={(e) => {
                     setPassword(e.target.value);
                   }}
-                  className="w-full outline-none placeholder:text-[12px] md:placeholder:text-[16px]"
+                  className="w-full outline-none placeholder:text-[13px] md:placeholder:text-[16px]"
                 />
                 <p className="text-[#1c9fda] font-medium text-[10px] md:text-sm">
                   Show
@@ -60,7 +92,10 @@ const LoginForm = () => {
             </div>
 
             <div className="w-full">
-              <button className="bg-[#1c9fda] w-full p-2 rounded-md text-white text-sm md:text-md cursor-pointer">
+              <button
+                className="bg-[#1c9fda] w-full p-2 rounded-md text-white text-sm md:text-md cursor-pointer"
+                onClick={loginUser}
+              >
                 Log In
               </button>
             </div>
