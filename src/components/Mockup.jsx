@@ -28,9 +28,9 @@ const Mockup = () => {
       <div className="flex w-full">
         <div className="flex-1 w-full md:w-[50%] bg-[#F7F7F8] md:h-[100vh]">
           <div className="w-full px-[1rem] md:px-[7rem] pt-7">
-            <img src={logo} alt="logo" className="w-[5rem] md:w-[7rem]" />
+            <img src={logo} alt="logo" className="w-[6rem] md:w-[7rem]" />
 
-            <div className="flex flex-col items-center my-3 md:my-0">
+            <div className="flex flex-col items-center my-5 md:my-0">
               <img
                 src={desktopMockup}
                 alt=""
